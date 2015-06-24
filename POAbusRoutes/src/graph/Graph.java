@@ -16,7 +16,7 @@ public class Graph {
 	}
 	
 	public void addVector(Vertex vertex) {
-		vertices.add(vertex);
+		vertices.add(vertex.getIndex(), vertex);
 	}
 	
 	public void addEdge (Edge edge) {
@@ -28,7 +28,18 @@ public class Graph {
 		return vertices.get(vertexIndex);
 	}
 	
-	public void getBestPath () {
+	public void getBestPath (int originIndex, int destinyIndex) {
+		/* Initialize Visited */
+		Vector<Edge> visited = new Vector<Edge>();	
+		
+		/* Initialize Costs*/
+		Vector cost = new Vector();
+		
+		/* Initialize Previous */
+		Vector previous = new Vector();
+		
+		/* Cost vector origin point starts with 0 */
+		cost.add(originIndex, 0);
 		
 	}
 	
