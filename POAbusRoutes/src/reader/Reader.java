@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class Reader {
 	
-	public void fileReader () throws FileNotFoundException {
+	public void fileReader (Graph graph) throws FileNotFoundException {
 		
 		/* Creates the scanner that will read the file in the given path */
 		Scanner reader = new Scanner (new File("src/resources/grafo.txt"));
@@ -22,16 +22,23 @@ public class Reader {
 		
 		while (reader.hasNext()) {
 			
-			
+			String readerBuildType = null;
 			String dataType = reader.next();
-			String dataContent; reader.nextLine();
-			
-			if (dataType.equals("vertices")) {
-				
-				
-			} else if (dataType.equals("arestas")) {
-				
+			if (dataType.contains("vertices")) {
+				readerBuildType = "vertices";
+			} else if (dataType.contains("arestas")) {
+				readerBuildType = "arestas";
 			}
+			String dataContent = reader.nextLine();
+			
+			if (readerBuildType.equals("vertices")) {
+				graph.addVector(buildVertex(dataContent));
+				
+			} else if (readerBuildType.equals("arestas")) {
+				graph.addEdge(buildEdge(dataContent, graph));
+			}
+			
+			
 			
 		} 
 		
@@ -39,7 +46,9 @@ public class Reader {
 		
 	}
 	
-	public Vertex buildVertice (String dataContent) {
+	/* Build a Vertex object using the data read */
+	
+	public Vertex buildVertex (String dataContent) {
 		Scanner dataScan = new Scanner (dataContent);
 		dataScan.useDelimiter(" ");
 		int index = dataScan.nextInt();
@@ -53,20 +62,21 @@ public class Reader {
 		return v;
 	}
 	
-	public Edge buildEdge (String dataContent) {
+	
+	/* Build an Edge object using the data read */
+	
+	public Edge buildEdge (String dataContent, Graph graph) {
 		Scanner dataScan = new Scanner (dataContent);
 		dataScan.useDelimiter(" ");
 		int originVertexIndex = dataScan.nextInt();
 		int destinyVertexIndex = dataScan.nextInt();
-		int cost = dataScan.nextInt();
 		
-		
-		Graph.getVertex(destinyVertexIndex);
-		Vertex originVertex = Graph.getVertex(originVertexIndex);
-		Vertex destinyVertex = Graph.getVertex(originVertexIndex);  
+		Vertex originVertex = graph.getVertex(originVertexIndex);
+		Vertex destinyVertex = graph.getVertex(destinyVertexIndex);  
 		
 		
 		Edge e = new Edge (originVertex, destinyVertex);
+		dataScan.close();
 		return e;
 	}
 	

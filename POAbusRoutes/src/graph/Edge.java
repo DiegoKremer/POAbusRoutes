@@ -2,31 +2,31 @@ package graph;
 
 public class Edge {
 	
-	private Vertex originVertice;
-	private Vertex destinyVertice;
+	private Vertex originVertex;
+	private Vertex destinyVertex;
 	private Double cost;
 
-	public Edge (Vertex originVertice, Vertex destinyVertice) {
-		this.originVertice = originVertice;
-		this.destinyVertice = destinyVertice;
-		this.cost = calculateCost(originVertice, destinyVertice);
+	public Edge (Vertex originVertex, Vertex destinyVertex) {
+		this.originVertex = originVertex;
+		this.destinyVertex = destinyVertex;
+		this.cost = calculateCost(originVertex, destinyVertex);
 		
 	}
 
 	public Vertex getOriginVertice() {
-		return originVertice;
+		return originVertex;
 	}
 
 	public void setOriginVertice(Vertex originVertice) {
-		this.originVertice = originVertice;
+		this.originVertex = originVertice;
 	}
 
 	public Vertex getDestinyVertice() {
-		return destinyVertice;
+		return destinyVertex;
 	}
 
 	public void setDestinyVertice(Vertex destinyVertice) {
-		this.destinyVertice = destinyVertice;
+		this.destinyVertex = destinyVertice;
 	}
 
 	public Double getCost() {
@@ -47,5 +47,8 @@ public class Edge {
 		return cost;
 	}
 	
+	public String toString () {
+		return "Origin Vertex: "+originVertex+" Destiny Vertex: "+destinyVertex+" Cost: "+cost;
+	}
 	
 }

@@ -35,9 +35,13 @@ public class Vertex {
 	public void setY(Double y) {
 		this.y = y;
 	}
+	
 
 	
-	
+	public String toString () {
+		return "Vertex -> INDEX: "+index+" X: "+x+" Y: "+y;
+		
+	}
 	
 
 }
