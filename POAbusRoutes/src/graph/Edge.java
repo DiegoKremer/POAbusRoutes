@@ -2,14 +2,15 @@ package graph;
 
 public class Edge {
 	
-	private int originVertice;
-	private int destinyVertice;
+	private Vertice originVertice;
+	private Vertice destinyVertice;
 	private int cost;
 
-	public Edge (int originVertice, int destinyVertice, int cost) {
+	public Edge (Vertice originVertice, Vertice destinyVertice) {
 		this.originVertice = originVertice;
 		this.destinyVertice = destinyVertice;
-		this.cost = cost;
+		this.cost = calculateCost(originVertice, destinyVertice);
+		
 	}
 
 	public int getOriginVertice() {
@@ -34,6 +35,14 @@ public class Edge {
 
 	public void setCost(int cost) {
 		this.cost = cost;
+	}
+	
+	public int calculateCost (Vertice originVertice, Vertice destinyVertice) {
+		int cost;
+		
+		cost = Math.sqrt((originVertice.getX1() - destinyVertice.getX2()));
+				
+		return cost;
 	}
 	
 	
