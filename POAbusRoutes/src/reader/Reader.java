@@ -1,7 +1,8 @@
 package reader;
 
 import graph.Edge;
-import graph.Vertice;
+import graph.Graph;
+import graph.Vertex;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -38,38 +39,34 @@ public class Reader {
 		
 	}
 	
-	public Vertice buildVertice (String dataContent) {
+	public Vertex buildVertice (String dataContent) {
 		Scanner dataScan = new Scanner (dataContent);
 		dataScan.useDelimiter(" ");
 		int index = dataScan.nextInt();
-		String coord1 = dataScan.next();
-		String coord2 = dataScan.next();
+		Double x = dataScan.nextDouble();
+		Double y = dataScan.nextDouble();
 		
-		Scanner coordScan1 = new Scanner (coord1);
-		coordScan1.useDelimiter(",");
-		int x1 = coordScan1.nextInt();
-		int y1 = coordScan1.nextInt();
+	
 		
-		Scanner coordScan2 = new Scanner (coord2);
-		coordScan2.useDelimiter(",");
-		int x2 = coordScan2.nextInt();
-		int y2 = coordScan2.nextInt();
-		
-		Vertice v = new Vertice (index, x1, y1, x2, y2);
+		Vertex v = new Vertex (index, x, y);
 		dataScan.close();
-		coordScan1.close();
-		coordScan2.close();
 		return v;
 	}
 	
 	public Edge buildEdge (String dataContent) {
 		Scanner dataScan = new Scanner (dataContent);
 		dataScan.useDelimiter(" ");
-		int originVertice;
-		int destinyVertice;
-		int cost;
+		int originVertexIndex = dataScan.nextInt();
+		int destinyVertexIndex = dataScan.nextInt();
+		int cost = dataScan.nextInt();
 		
-		Edge e = new Edge (originVertice, destinyVertice, cost);
+		
+		Graph.getVertex(destinyVertexIndex);
+		Vertex originVertex = Graph.getVertex(originVertexIndex);
+		Vertex destinyVertex = Graph.getVertex(originVertexIndex);  
+		
+		
+		Edge e = new Edge (originVertex, destinyVertex);
 		return e;
 	}
 	

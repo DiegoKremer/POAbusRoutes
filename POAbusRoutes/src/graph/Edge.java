@@ -2,45 +2,47 @@ package graph;
 
 public class Edge {
 	
-	private Vertice originVertice;
-	private Vertice destinyVertice;
-	private int cost;
+	private Vertex originVertice;
+	private Vertex destinyVertice;
+	private Double cost;
 
-	public Edge (Vertice originVertice, Vertice destinyVertice) {
+	public Edge (Vertex originVertice, Vertex destinyVertice) {
 		this.originVertice = originVertice;
 		this.destinyVertice = destinyVertice;
 		this.cost = calculateCost(originVertice, destinyVertice);
 		
 	}
 
-	public int getOriginVertice() {
+	public Vertex getOriginVertice() {
 		return originVertice;
 	}
 
-	public void setOriginVertice(int originVertice) {
+	public void setOriginVertice(Vertex originVertice) {
 		this.originVertice = originVertice;
 	}
 
-	public int getDestinyVertice() {
+	public Vertex getDestinyVertice() {
 		return destinyVertice;
 	}
 
-	public void setDestinyVertice(int destinyVertice) {
+	public void setDestinyVertice(Vertex destinyVertice) {
 		this.destinyVertice = destinyVertice;
 	}
 
-	public int getCost() {
+	public Double getCost() {
 		return cost;
 	}
 
-	public void setCost(int cost) {
+	public void setCost(Double cost) {
 		this.cost = cost;
 	}
 	
-	public int calculateCost (Vertice originVertice, Vertice destinyVertice) {
-		int cost;
+	
+	/* Calculates the cost based on mathematical equation for coordinate distance */
+	
+	public Double calculateCost (Vertex originVertex, Vertex destinyVertex) {
 		
-		cost = Math.sqrt((originVertice.getX1() - destinyVertice.getX2()));
+		Double cost = Math.sqrt((Math.pow((destinyVertex.getX() - originVertex.getX()), 2)) - (Math.pow((destinyVertex.getY() - originVertex.getY()),2)));
 				
 		return cost;
 	}
