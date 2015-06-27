@@ -1,5 +1,6 @@
 package graph;
 
+import java.util.Stack;
 import java.util.Vector;
 
 
@@ -29,6 +30,8 @@ public class Graph {
 	}
 	
 	public void getBestPath (int originIndex, int destinyIndex) {
+		Stack<Edge> stack = new Stack<Edge> ();
+		
 		/* Initialize Visited */
 		Vector<Edge> visited = new Vector<Edge>();	
 		
@@ -40,6 +43,16 @@ public class Graph {
 		
 		/* Cost vector origin point starts with 0 */
 		cost.add(originIndex, 0);
+		
+		stack.add(edges.get(originIndex));
+		while (!stack.isEmpty()) {
+			Edge n = stack.firstElement();
+			if (visited.contains(n)) {
+				break;
+			} else {
+				
+			}
+		}
 		
 	}
 	
