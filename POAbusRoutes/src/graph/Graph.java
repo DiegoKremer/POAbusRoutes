@@ -1,5 +1,6 @@
 package graph;
 
+import java.util.ArrayList;
 import java.util.Stack;
 import java.util.Vector;
 
@@ -30,28 +31,37 @@ public class Graph {
 	}
 	
 	public void getBestPath (int originIndex, int destinyIndex) {
-		Stack<Edge> stack = new Stack<Edge> ();
+		Stack<Vertex> stack = new Stack<Vertex> ();
 		
 		/* Initialize Visited */
-		Vector<Edge> visited = new Vector<Edge>();	
+		Vector visited = new Vector();
+		visited.set(originIndex, false);
+	
 		
 		/* Initialize Costs*/
-		Vector cost = new Vector();
+		double cost[];
+		
+		for (int i = 0; i < vertices.size(); i++) {
+			cost[i] = Integer.MAX_VALUE;
+		}
 		
 		/* Initialize Previous */
-		Vector previous = new Vector();
+		Vertex previous[];
 		
 		/* Cost vector origin point starts with 0 */
-		cost.add(originIndex, 0);
+		cost[originIndex] = 0;
 		
-		stack.add(edges.get(originIndex));
+		stack.add(vertices.get(originIndex));
 		while (!stack.isEmpty()) {
-			Edge n = stack.firstElement();
-			if (visited.contains(n)) {
-				break;
-			} else {
+			Vertex n = stack.firstElement();
+			for (int i = 0; i < visited.size(); i++) {
+				if (visited.get(i).equals(n)) {
+					break;
+				}
 				
 			}
+				
+			
 		}
 		
 	}
