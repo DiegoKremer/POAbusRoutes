@@ -34,30 +34,44 @@ public class Graph {
 		Stack<Vertex> stack = new Stack<Vertex> ();
 		
 		/* Initialize Visited */
-		Vector visited = new Vector();
+		Vector<Boolean> visited = new Vector<Boolean>();
 		visited.set(originIndex, false);
-	
+		
+		Vector<Vertex> adjacents = new Vector<Vertex>();
 		
 		/* Initialize Costs*/
-		double cost[];
+		
+		Vector<Integer> costs = new Vector<Integer> ();
 		
 		for (int i = 0; i < vertices.size(); i++) {
-			cost[i] = Integer.MAX_VALUE;
+			costs.add(i, Integer.MAX_VALUE);
 		}
 		
 		/* Initialize Previous */
-		Vertex previous[];
+		Vector<Vertex> previous = new Vector<Vertex> ();
 		
 		/* Cost vector origin point starts with 0 */
-		cost[originIndex] = 0;
+		costs.add(originIndex, 0);
 		
 		stack.add(vertices.get(originIndex));
 		while (!stack.isEmpty()) {
-			Vertex n = stack.firstElement();
-			for (int i = 0; i < visited.size(); i++) {
-				if (visited.get(i).equals(n)) {
+			Vertex element = stack.firstElement();
+			for (int i = 0; i < stack.size(); i++) {
+				if (visited.get(i).equals(element)) {
 					break;
 				}
+				
+				/* Get adjacents vertices */
+				for (int edgesIndex = 0;  edgesIndex < edges.size(); edgesIndex++) {
+					if (edges.get(edgesIndex).getDestinyVertex().equals(element)) {
+						adjacents.add(edges.get(edgesIndex).getDestinyVertex());
+					}
+				}
+				
+				for (int adjacentsIndex = 0; adjacentsIndex < adjacents.size(); adjacentsIndex++) {
+					
+				}
+				
 				
 			}
 				
