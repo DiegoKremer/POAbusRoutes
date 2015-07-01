@@ -14,7 +14,7 @@ public class Main {
 		
 		reader.fileReader(graph);
 		
-		graph.getBestPath(0, 102);
+		graph.getBestPath(30, 102);
 		
 		//graph.printAllVertices();
 		//graph.printAllEdges();

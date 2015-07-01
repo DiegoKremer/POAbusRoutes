@@ -31,11 +31,15 @@ public class Graph {
 
 		/* Initialize Visited */
 		Vector<Boolean> visited = new Vector<Boolean>();
-		visited.add(originIndex, false);
-
+		
+		for (int i = 0; i < vertices.size(); i++) {
+			visited.add(i, false);
+		}
+		
+		/* Adjacents vector */
 		Vector<Edge> adjacents = new Vector<Edge>();
 
-		/* Initialize Costs */
+		/* Initialize Costs with Infinite Value */
 
 		Vector<Double> costs = new Vector<Double>();
 
@@ -48,64 +52,75 @@ public class Graph {
 
 		/* Cost vector origin point starts with 0 */
 		costs.add(originIndex, 0.0);
-
+		
 		stack.add(vertices.get(originIndex));
-
+		
+		//System.out.println("ORIGIN VERTEX IS: " + vertices.get(originIndex).toString());
 		while (!stack.isEmpty()) {
-			System.out.println("ENTRA NO WHILE DO DIJKSTRA");
+			//System.out.println("ENTERS DIJKSTRA WHILE LOOP");
 			Vertex element = stack.pop();
-			for (int i = 0; i < stack.size(); i++) {
-				if (visited.get(i).equals(element)) {
-					System.out.println("VERIFICA VISITADO");
-					break;
-				}
+			//System.out.println("STACK POP ELEMENT IS: "+ element.toString());
+			for (int i = 0; i < visited.size(); i++) {
+				if (visited.get(i).equals(element) == true) {
+					System.out.println("CHECKED IF VISITED");
+				} else {
 
 				/* Get adjacents vertices */
 				for (int edgesIndex = 0; edgesIndex < edges.size(); edgesIndex++) {
-					//System.out.println("FAZ LOOP DOS VERTICES ADJACENTES"
-						//	+ " - " + edgesIndex);
-					if (edges.get(edgesIndex).getDestinyVertex()
+					//System.out.println("VERIFICANDO QUAIS OS VERTICES ADJACENTES"
+					//		+ " - " + edgesIndex + " - " + edges.size());
+					if (edges.get(edgesIndex).getOriginVertex()
 							.equals(element)) {
-					//	System.out
-					//			.println("ADICIONA OS ADJACENTES ENCONTRADOS");
+					//System.out
+					//			.println("ADICIONA OS ADJACENTES ENCONTRADOS NO VETOR");
 						adjacents.add(edges.get(edgesIndex));
 					}
 				}
 				/* Para cada vértice (v) vizinho de n: */
 				for (int adjacentsIndex = 0; adjacentsIndex < adjacents.size(); adjacentsIndex++) {
-					//System.out.println("CÓDIGO DOS CUSTOS" + adjacents.size());
+					//System.out.println("VERIFICANDO OS CUSTOS" + adjacents.size());
 					/* custo = custos[n] + custo(n,v) */
-					double cost = costs.get(originIndex)
+					double cost = costs.get(element.getIndex())
 							+ adjacents.get(adjacentsIndex).getCost();
+					System.out.println("CURRENT ELEMENT IS: " + element.toString());
+					System.out.println("ELEMENT COST " + element.toString() + " IS: " + costs.get(element.getIndex()));
+					System.out.println("ELEMENT NEIGHBOUR COST: " + adjacents.get(adjacentsIndex).getCost());
+					System.out.println("COST VALUE: " + cost);
+					System.out.println("THE NEIGHBOUR IS: " + adjacents.get(adjacentsIndex).getDestinyVertex().toString());
 					/* Se custo < custos(v): */
 					if (cost < costs.get(adjacents.get(adjacentsIndex)
 							.getDestinyVertex().getIndex())) {
+						System.out.println("CHECK IF COST IS LESS THAN ITS NEIGHBOUR");
 						/* custos[v] = custo */
 						costs.add(adjacents.get(adjacentsIndex)
 								.getDestinyVertex().getIndex(), cost);
 						/* anterior[v] = n */
-						previous.add(adjacents.get(adjacentsIndex)
-								.getDestinyVertex().getIndex(), element);
+						previous.add(element);
 					}
 					/* Se não visitou v */
 					if (visited.get(adjacents.get(adjacentsIndex)
 							.getDestinyVertex().getIndex()) == false) {
-						System.out.println("NAO VISITOU AINDA ADICIONA NA PILHA");
+						System.out.println("ADD TO STACK IF NOT VISITED");
 						/* adiciona v à Pilha */
 						stack.add(adjacents.get(adjacentsIndex)
 								.getDestinyVertex());
-					}
-				}
+						System.out.println("WHAT DOES THE STACK CONTAINS HERE? " + stack.toString());
+					} 
+						
+					
+				} 
+				
 				/* Marca n como visitado */
+				System.out.println("FINAL ELEMENT IS " + element.toString());
 				visited.add(element.getIndex(), true);
-				System.out.println("MARCOU COMO VISITADO");
-
+				System.out.println("SET AS VISITED");
+				
 			}
 
 		}
 		for (int i = 0; i < previous.size(); i++)
 			System.out.println(previous.get(i).toString());
-
+		}
 	}
 
 	public void getTotalDistance() {
