@@ -53,7 +53,7 @@ public class Graph {
 
 		while (!stack.isEmpty()) {
 			System.out.println("ENTRA NO WHILE DO DIJKSTRA");
-			Vertex element = stack.firstElement();
+			Vertex element = stack.pop();
 			for (int i = 0; i < stack.size(); i++) {
 				if (visited.get(i).equals(element)) {
 					System.out.println("VERIFICA VISITADO");
@@ -73,7 +73,7 @@ public class Graph {
 				}
 				/* Para cada vértice (v) vizinho de n: */
 				for (int adjacentsIndex = 0; adjacentsIndex < adjacents.size(); adjacentsIndex++) {
-					System.out.println("CÓDIGO DOS CUSTOS" + adjacents.size());
+					//System.out.println("CÓDIGO DOS CUSTOS" + adjacents.size());
 					/* custo = custos[n] + custo(n,v) */
 					double cost = costs.get(originIndex)
 							+ adjacents.get(adjacentsIndex).getCost();
@@ -92,16 +92,19 @@ public class Graph {
 							.getDestinyVertex().getIndex()) == false) {
 						System.out.println("NAO VISITOU AINDA ADICIONA NA PILHA");
 						/* adiciona v à Pilha */
-						stack.push(adjacents.get(adjacentsIndex)
+						stack.add(adjacents.get(adjacentsIndex)
 								.getDestinyVertex());
 					}
 				}
 				/* Marca n como visitado */
 				visited.add(element.getIndex(), true);
+				System.out.println("MARCOU COMO VISITADO");
 
 			}
 
 		}
+		for (int i = 0; i < previous.size(); i++)
+			System.out.println(previous.get(i).toString());
 
 	}
 
