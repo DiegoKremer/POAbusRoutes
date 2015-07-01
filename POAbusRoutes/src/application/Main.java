@@ -14,6 +14,8 @@ public class Main {
 		
 		reader.fileReader(graph);
 		
+		graph.getBestPath(0, 102);
+		
 		
 
 	}
