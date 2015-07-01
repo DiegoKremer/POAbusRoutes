@@ -1,6 +1,5 @@
 package graph;
 
-import java.util.ArrayList;
 import java.util.Stack;
 import java.util.Vector;
 
@@ -54,6 +53,7 @@ public class Graph {
 		costs.add(originIndex, 0.0);
 		
 		stack.add(vertices.get(originIndex));
+		
 		while (!stack.isEmpty()) {
 			Vertex element = stack.firstElement();
 			for (int i = 0; i < stack.size(); i++) {
@@ -85,7 +85,7 @@ public class Graph {
 					}
 				}
 				/* Marca n como visitado */
-				visited.add(adjacents.get(adjacentsIndex).getDestinyVertex().getIndex(), true);
+				visited.add(element.getIndex(), true);
 				
 				
 			}

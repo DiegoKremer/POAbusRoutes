@@ -26,10 +26,14 @@ public class Reader {
 			String dataType = reader.next();
 			if (dataType.contains("vertices")) {
 				readerBuildType = "vertices";
+				reader.nextLine();
 			} else if (dataType.contains("arestas")) {
 				readerBuildType = "arestas";
+				reader.nextLine();
 			}
-			String dataContent = reader.nextLine();
+			
+			
+			String dataContent = reader.nextLine().replace(",", ".");
 			
 			if (readerBuildType.equals("vertices")) {
 				graph.addVector(buildVertex(dataContent));
@@ -50,7 +54,8 @@ public class Reader {
 	
 	public Vertex buildVertex (String dataContent) {
 		Scanner dataScan = new Scanner (dataContent);
-		dataScan.useDelimiter(" ");
+		dataScan.useDelimiter(" ");		
+		
 		int index = dataScan.nextInt();
 		Double x = dataScan.nextDouble();
 		Double y = dataScan.nextDouble();
