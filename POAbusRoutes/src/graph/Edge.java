@@ -13,19 +13,19 @@ public class Edge {
 		
 	}
 
-	public Vertex getOriginVertice() {
+	public Vertex getOriginVertex() {
 		return originVertex;
 	}
 
-	public void setOriginVertice(Vertex originVertice) {
+	public void setOriginVertex(Vertex originVertice) {
 		this.originVertex = originVertice;
 	}
 
-	public Vertex getDestinyVertice() {
+	public Vertex getDestinyVertex() {
 		return destinyVertex;
 	}
 
-	public void setDestinyVertice(Vertex destinyVertice) {
+	public void setDestinyVertex(Vertex destinyVertice) {
 		this.destinyVertex = destinyVertice;
 	}
 
