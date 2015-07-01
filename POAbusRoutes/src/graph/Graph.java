@@ -26,13 +26,12 @@ public class Graph {
 	}
 
 	public void getBestPath(int originIndex, int destinyIndex) {
-		
+
 		Stack<Vertex> stack = new Stack<Vertex>();
 
 		/* Initialize Visited */
 		Vector<Boolean> visited = new Vector<Boolean>();
-			visited.add(originIndex, false);
-		
+		visited.add(originIndex, false);
 
 		Vector<Edge> adjacents = new Vector<Edge>();
 
@@ -63,17 +62,18 @@ public class Graph {
 
 				/* Get adjacents vertices */
 				for (int edgesIndex = 0; edgesIndex < edges.size(); edgesIndex++) {
-					System.out.println(edges.size());
-					System.out.println("FAZ LOOP DOS VERTICES ADJACENTES" + " - " + edgesIndex);
+					//System.out.println("FAZ LOOP DOS VERTICES ADJACENTES"
+						//	+ " - " + edgesIndex);
 					if (edges.get(edgesIndex).getDestinyVertex()
 							.equals(element)) {
-						System.out.println("ADICIONA OS ADJACENTES ENCONTRADOS");
+					//	System.out
+					//			.println("ADICIONA OS ADJACENTES ENCONTRADOS");
 						adjacents.add(edges.get(edgesIndex));
 					}
 				}
 				/* Para cada vértice (v) vizinho de n: */
 				for (int adjacentsIndex = 0; adjacentsIndex < adjacents.size(); adjacentsIndex++) {
-					System.out.println("CÓDIGO DOS CUSTOS");
+					System.out.println("CÓDIGO DOS CUSTOS" + adjacents.size());
 					/* custo = custos[n] + custo(n,v) */
 					double cost = costs.get(originIndex)
 							+ adjacents.get(adjacentsIndex).getCost();
@@ -90,6 +90,7 @@ public class Graph {
 					/* Se não visitou v */
 					if (visited.get(adjacents.get(adjacentsIndex)
 							.getDestinyVertex().getIndex()) == false) {
+						System.out.println("NAO VISITOU AINDA ADICIONA NA PILHA");
 						/* adiciona v à Pilha */
 						stack.push(adjacents.get(adjacentsIndex)
 								.getDestinyVertex());
@@ -107,15 +108,15 @@ public class Graph {
 	public void getTotalDistance() {
 
 	}
-	
-	public void printAllVertices () {
-		
+
+	public void printAllVertices() {
+
 		for (int i = 0; i < vertices.size(); i++) {
 			System.out.println(vertices.get(i).toString());
 		}
 	}
-	
-	public void printAllEdges () {
+
+	public void printAllEdges() {
 		for (int i = 0; i < edges.size(); i++) {
 			System.out.println(edges.get(i).toString());
 		}

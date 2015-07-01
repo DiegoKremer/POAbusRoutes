@@ -17,22 +17,23 @@ public class Reader {
 
 		/* Set the character that will be used to delimit the file fields */
 		reader.useDelimiter(" ");
-
+		String dataType = "vertices";
 		while (reader.hasNext()) {
 
-			String dataType = "vertices";
+			
 			String readerData = reader.nextLine();
-
-			if (readerData.contains("arestas")) {
+			//System.out.println(dataType);
+			if (readerData.equals("vertices")) {
+				readerData = reader.nextLine();
+			} else if (readerData.equals("arestas")) {
+				//System.out.println("Verificou que é uma aresta.");
 				dataType = "arestas";
 				readerData = reader.nextLine();
-			} else if (readerData.contains("vertices")) {
-				readerData = reader.nextLine();
-			}
+			} 
 
 			String dataContent = readerData.replace(",", ".");
 
-			System.out.println(dataType);
+			
 
 			if (dataType.equals("vertices")) {
 				graph.addVector(buildVertex(dataContent));
@@ -67,8 +68,9 @@ public class Reader {
 	/* Build an Edge object using the data read */
 
 	public Edge buildEdge(String dataContent, Graph graph) {
-		System.out.println("Construindo Arestas????");
+		//System.out.println("Construindo Arestas????");
 		Scanner dataScan = new Scanner(dataContent);
+		//System.out.println(dataContent);
 		dataScan.useDelimiter(" ");
 		int originVertexIndex = dataScan.nextInt();
 		int destinyVertexIndex = dataScan.nextInt();
